@@ -1,0 +1,63 @@
+Function Documentation Report - myshell
+==================================================
+
+Function: main()
+Location: myshell.c
+Description: Entry point of the shell. Handles input from user or batch file and delegates commands to handle_command.
+--------------------------------------------------
+Function: handle_command(char *input)
+Location: utility.c
+Description: Main function to parse and execute both internal and external commands, with support for redirection and background execution.
+--------------------------------------------------
+Function: system("clear")
+Location: utility.c (clr command)
+Description: Clears the terminal screen when 'clr' is called.
+--------------------------------------------------
+Function: getcwd()
+Location: myshell.c + utility.c (cd, prompt)
+Description: Gets the current working directory. Used for both prompt and 'cd' command with no argument.
+--------------------------------------------------
+Function: chdir(path)
+Location: utility.c (cd command)
+Description: Changes current working directory to specified path.
+--------------------------------------------------
+Function: strtok_r(), strchr()
+Location: utility.c
+Description: Used to tokenize input commands and detect special characters like '&' or redirection symbols.
+--------------------------------------------------
+Function: fork(), execvp(), waitpid()
+Location: utility.c (external commands)
+Description: Creates child process to run external commands and manages process execution.
+--------------------------------------------------
+Function: dup2(), open(), close()
+Location: utility.c
+Description: Handles I/O redirection by replacing stdin/stdout file descriptors.
+--------------------------------------------------
+Function: system("ls -al <dir>")
+Location: utility.c (dir command)
+Description: Lists contents of a directory using system call.
+--------------------------------------------------
+Function: system("more readme")
+Location: utility.c (help command)
+Description: Displays the user manual when 'help' is typed.
+--------------------------------------------------
+Function: printf(), perror(), fgets()
+Location: myshell.c + utility.c
+Description: Used for outputting to the terminal and reading input lines.
+--------------------------------------------------
+Function: strlen(), strcmp(), strcpy(), snprintf()
+Location: myshell.c + utility.c
+Description: String manipulation utilities used throughout command parsing and formatting.
+--------------------------------------------------
+Function: fopen(), fclose()
+Location: myshell.c
+Description: Used when batch mode is activated to read commands from a file.
+--------------------------------------------------
+Function: extern char **environ
+Location: utility.c (environ command)
+Description: Accesses the environment variables for printing when 'environ' is called.
+--------------------------------------------------
+Function: getchar()
+Location: utility.c (pause command)
+Description: Waits for user to press Enter before continuing execution.
+--------------------------------------------------
