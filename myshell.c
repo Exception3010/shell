@@ -2,8 +2,7 @@
 
 
 int main(int argc, char *argv[]) {
-    char input[MAX_INPUT];
-    char *args[MAX_ARGS];
+    char input[INPUT_SIZE];
     char cwd[MAX_PATH];
     FILE *batch_file = NULL;
     
@@ -39,29 +38,13 @@ int main(int argc, char *argv[]) {
             }
         }
         
-        // Parse input
-        char *token = strtok(input, " \t\n");
-        int i = 0;
-        while (token != NULL && i < MAX_ARGS - 1) {
-            args[i++] = token;
-            token = strtok(NULL, " \t\n");
-        }
-        args[i] = NULL;
-        
-        // Skip empty lines
-        if (args[0] == NULL) {
+        trim_whitespace(input);
+        if (input[0] == '\0') {
             continue;
         }
-        
-        // Check for background execution
-        int background = 0;
-        if (i > 0 && strcmp(args[i-1], "&") == 0) {
-            background = 1;
-            args[i-1] = NULL;
-        }
-        
-        // Execute command
-        execute_command(args, background);
+
+        add_to_history(input);
+        execute_command(input);
     }
     
     if (batch_file) fclose(batch_file);
